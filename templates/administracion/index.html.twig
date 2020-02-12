@@ -3,18 +3,37 @@
 {% block title %}Hello AdministracionController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {{ parent() }}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {# {{ dump(app.user) }} #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/francisco/Documentos/Re__Convocatoria_ingeniero_de_desarrollo/mopa/src/Controller/AdministracionController.php'|file_link(0) }}">src/Controller/AdministracionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/francisco/Documentos/Re__Convocatoria_ingeniero_de_desarrollo/mopa/templates/administracion/index.html.twig'|file_link(0) }}">templates/administracion/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1 class="text-center">Panel de control</h1>
+    <div class="container" >
+        <div class="row div_angosta" >
+            {# <div class="col-4"> #}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Entidad</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Cliente</td>
+                        <td><a class="btn btn-outline-secondary" href="{{ path('cliente_index') }}" >Administrar C</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Sala</td>
+                        <td><a class="btn btn-outline-secondary" href="{{ path('sala_index') }}" >Administrar S</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            {# </div> #}
+        </div>
+    </div>
+
 {% endblock %}

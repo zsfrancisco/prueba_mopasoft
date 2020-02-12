@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sala{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Crear nueva Sala</h1>
+
+    {{ include('sala/_form.html.twig') }}
+
+    <hr>
+    
+    <a class="btn btn-outline-primary" href="{{ path('sala_index') }}">Volver al listado</a>
+{% endblock %}

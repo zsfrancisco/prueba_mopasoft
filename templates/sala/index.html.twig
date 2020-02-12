@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sala index{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Salas</h1>
+
+    <div class="container" >
+        <div class="row" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sala in salas %}
+                    <tr>
+                        <td>{{ sala.id }}</td>
+                        <td>{{ sala.nombreSala }}</td>
+                        <td>
+                            <a href="{{ path('sala_show', {'id': sala.id}) }}"> <img src="{{ asset('img/busqueda.png') }}" > mostrar</a>
+                            <a href="{{ path('sala_edit', {'id': sala.id}) }}"><img src="{{ asset('img/editar.png') }}" > editar</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">No se encontraron registros</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a class="btn btn-primary" href="{{ path('sala_new') }}">Crear nueva sala</a>
+{% endblock %}

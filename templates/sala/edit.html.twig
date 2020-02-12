@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Sala{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Editar Sala</h1>
+
+    {{ include('sala/_form.html.twig', {'button_label': 'Update'}) }} <br>
+
+    <a class="btn btn-primary" href="{{ path('sala_index') }}">Volver al listado</a> <hr>
+
+    {{ include('sala/_delete_form.html.twig') }}
+{% endblock %}
