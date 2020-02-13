@@ -5,8 +5,26 @@
 {% block body %}
     {{ parent() }}
 
+
+    {# {% set salas = [ {
+        hora_inicio: 9,
+        hora_fin: 10
+    }, {
+        hora_inicio: 11,
+        hora_fin: 12
+    }, {
+        hora_inicio: 15,
+        hora_fin: 16
+    } ] %}
+
+    {% set disponibles = [ 8, 9, 9, 10, 10, 11, 11, 12, 14, 15, 15, 16, 16, 17, 17, 18 ] %}
+
+    {% for s in sala %}
+        {% set index = disponibles.indexOf(s.hora_inicio) %}
+    {% endfor %} #}
+
     {# {{ dump(sala[0].getHoraInicioReserva()) }} #}
-    {# {{ dump(sala) }} #}
+     {{ dump(sala) }} 
     {% set valor = 8 %}
     {% set primera = 0 %}
     {% set ultima = 0 %}
@@ -22,35 +40,36 @@
                 
                     {% if hora.getHoraInicioReserva() != 8%}
                         <li class="list-group-item">De 8 a {{ hora.getHoraInicioReserva() }} </li>
-                        {% set valor = hora.getHoraInicioReserva() %}
-                        <li class="list-group-item">De {{ valor }} a {{ hora.getHoraFinReserva() }}</li>
+                        {% set valor = hora.getHoraFinReserva() %}
+                        <li class="list-group-item"> {% if valor != 12 %} De {{ valor }} </li>  hasta{% endif %}
 
                     {% else %}
-                        {{ hora.getHoraInicioReserva() }} 
+                        <li class="list-group-item"> Desde {{ hora.getHoraFinReserva() }} </li> hasta
                     {% endif %}
                 
             {% elseif hora.getHoraInicioReserva() in [14, 15, 16, 17, 18] %}
                 
                     {% if hora.getHoraInicioReserva() != 14%}
                         <li class="list-group-item">De 14 a {{ hora.getHoraInicioReserva() }} </li>
-                        {% set valor = hora.getHoraInicioReserva() %}
-                        <li class="list-group-item"> De {{ valor }} a {{ hora.getHoraFinReserva() }} </li>
+                        {% set valor = hora.getHoraFinReserva() %}
+                        <li class="list-group-item">De {{ valor }} </li> {% if valor != 18 %} hasta {% endif %}
 
                     {% else %}
-                        <li class="list-group-item"> De {{ hora.getHoraInicioReserva() }} a {{ hora.getHoraFinReserva() }} </li>
+                        <li class="list-group-item"> Desde {{ hora.getHoraFinReserva() }} </li>
                     {% endif %}
 
             {% endif %}
             {% set primera = hora.getHoraInicioReserva()  %}
             {% set ultima = hora.getHoraFinReserva() %}
         {% endfor %}
-
         {% if ultima < 12 %}
             <li class="list-group-item"> De {{ultima}} a 12 y toda la tarde </li>
         {% elseif ultima == 12 %}
             <li class="list-group-item"> De 14 a 18 </li>
         {% elseif ultima < 18 and ultima > 12 %}
             <li class="list-group-item">De {{ultima}} a 18</li>
+        {% elseif ultima == 18 %}
+            
         {% else %}
             <li class="list-group-item"> De 8 a 12 </li>
         {% endif %}

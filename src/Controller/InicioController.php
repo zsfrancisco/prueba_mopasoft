@@ -33,7 +33,8 @@ class InicioController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $sala = $entityManager->getRepository(Reserva::class)->findBy(
-            ['sala' => $id]
+            ['sala' => $id],
+            ['hora_fin_reserva' => 'ASC']
             );
         if (!$sala) {
             throw $this->createNotFoundException(
