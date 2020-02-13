@@ -64,7 +64,7 @@ var admin_res = new Vue({
 var crear = new Vue({
     el: '#crear',
     data: {
-        message: 'Usted acaba de realizar el registro'
+        message: 'Usted está intentando hacer o modificar un registro'
     },
     // definir métodos bajo el objeto `methods`
     methods: {
