@@ -23,16 +23,16 @@
                         <tr>
                         <th scope="row">1</th>
                         <td>Cliente</td>
-                        <td><a class="btn btn-outline-secondary" href="{{ path('cliente_index') }}" >Administrar C</a></td>
+                        <td><a id="admin_cli" v-bind:title="message"  class="btn btn-outline-secondary" href="{{ path('cliente_index') }}" >Administrar C</a></td>
                         </tr>
                         <tr>
                         <th scope="row">2</th>
                         <td>Sala</td>
-                        <td><a class="btn btn-outline-secondary" href="{{ path('sala_index') }}" >Administrar S</a></td>
+                        <td><a id="admin_sal" v-bind:title="message" class="btn btn-outline-secondary" href="{{ path('sala_index') }}" >Administrar S</a></td>
                         </tr>
                         <th scope="row">3</th>
                         <td>Reserva</td>
-                        <td><a class="btn btn-outline-secondary" href="{{ path('reserva_index') }}" >Administrar R</a></td>
+                        <td><a id="admin_res" v-bind:title="message" class="btn btn-outline-secondary" href="{{ path('reserva_index') }}" >Administrar R</a></td>
                         </tr>
                     </tbody>
                 </table>

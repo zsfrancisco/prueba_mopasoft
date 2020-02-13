@@ -37,7 +37,7 @@ class InicioController extends AbstractController
             );
         if (!$sala) {
             throw $this->createNotFoundException(
-                'No se encontro ningún sala con el id '.$id
+                'Esta sala se encuentra disponible durante todo el día. '.$id
             );
         }
         return $this->render('inicio/disponibilidad.html.twig', [

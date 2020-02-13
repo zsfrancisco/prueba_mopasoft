@@ -10,9 +10,10 @@
     {% set valor = 8 %}
     {% set primera = 0 %}
     {% set ultima = 0 %}
-    <h3>Horas disponibles de la {{ sala[0].getSala().getNombreSala() }} </h3>
 
-    <div class="container lista_disponibilidad">
+    <div class="container m-5 lista_disponibilidad">
+        <h3>Horas disponibles de la {{ sala[0].getSala().getNombreSala() }} </h3>
+    
         <ul class="list-group ">
             
         {% for hora in sala %}

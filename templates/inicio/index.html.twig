@@ -8,8 +8,16 @@
     {# {{ dump(reservas) }} #}
     {# {{ dump(salas) }} #}
 
-    <div class="container" >
-        <div class="row" >
+    <div class="container m-5" >
+        <div id="info_disponible">
+            <span v-if="seen">
+                Información: al dar click en "ver disponibilidad" en cualquier sala
+                usted verá el horario disponible para esa sala, NO se puede ver las reservas 
+                ni quién hizo esa reserva.
+            </span><br>
+            <button class=" btn btn-outline-info " v-on:click="informacion">Mostrar / Ocultar información</button>
+        </div>
+        <div class="row m-3" >
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
