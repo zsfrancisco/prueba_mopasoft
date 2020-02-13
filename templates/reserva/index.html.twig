@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reserva index{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+    <h1>Reservas</h1>
+    <div class="container" >
+        <div class="row" >
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Sala</th>
+                        <th>Hora inicio</th>
+                        <th>Hora fin</th>
+                        <th>Cliente</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.id }}</td>
+                        <td>{{ reserva.getSala().getNombreSala() }}</td>
+                        <td>{{ reserva.horaInicioReserva }}</td>
+                        <td>{{ reserva.horaFinReserva }}</td>
+                        <td>{{ reserva.getClienteReserva().getNombresCliente() }} {{ reserva.getClienteReserva().getApellidosCliente()  }} </td>
+                        <td>
+                            <a href="{{ path('reserva_show', {'id': reserva.id}) }}"><img src="{{ asset('img/busqueda.png') }}" > mostrar</a>
+                            <a href="{{ path('reserva_edit', {'id': reserva.id}) }}"><img src="{{ asset('img/editar.png') }}" > editar</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">No se encontraron registros</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a class="btn btn-primary" href="{{ path('reserva_new') }}">Crear nueva reserva</a>
+{% endblock %}

@@ -5,6 +5,37 @@
 {% block body %}
     {{ parent() }}
 
-    <p>Aqui se mostrarán las salas y horarios disponibles</p>
+    {# {{ dump(reservas) }} #}
+    {# {{ dump(salas) }} #}
+
+    <div class="container" >
+        <div class="row" >
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sala in salas %}
+                    <tr>
+                        <td>{{ sala.id }}</td>
+                        <td>{{ sala.nombreSala }}</td>
+                        <td>
+                            <a href="{{ path('disponibilidad', {'id': sala.id}) }}"><img src="{{ asset('img/disponible.png') }}" > Ver disponibilidad</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">No se encontraron registros</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
 {% endblock %}

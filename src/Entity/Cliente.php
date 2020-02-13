@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -49,6 +51,16 @@ class Cliente
      * @ORM\Column(type="string", length=255)
      */
     private $telefono_cliente;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="cliente_reserva")
+     */
+    private $reservas;
+
+    public function __construct()
+    {
+        $this->reservas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,6 +135,37 @@ class Cliente
     public function setTelefonoCliente(string $telefono_cliente): self
     {
         $this->telefono_cliente = $telefono_cliente;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reserva[]
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): self
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas[] = $reserva;
+            $reserva->setClienteReserva($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): self
+    {
+        if ($this->reservas->contains($reserva)) {
+            $this->reservas->removeElement($reserva);
+            // set the owning side to null (unless already changed)
+            if ($reserva->getClienteReserva() === $this) {
+                $reserva->setClienteReserva(null);
+            }
+        }
 
         return $this;
     }

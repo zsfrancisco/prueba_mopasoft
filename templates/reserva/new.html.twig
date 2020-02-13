@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nueva Reserva{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Crear nueva Reserva</h1>
+
+    {{ include('reserva/_form.html.twig') }}
+
+    <a class="btn btn-outline-primary" href="{{ path('reserva_index') }}">Regresar al listado</a>
+{% endblock %}

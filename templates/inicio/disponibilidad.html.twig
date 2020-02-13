@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InicioController!{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    {# {{ dump(sala[0].getHoraInicioReserva()) }} #}
+    {# {{ dump(sala) }} #}
+    {% set valor = 8 %}
+    {% set primera = 0 %}
+    {% set ultima = 0 %}
+    <h3>Horas disponibles de la {{ sala[0].getSala().getNombreSala() }} </h3>
+
+    <div class="container lista_disponibilidad">
+        <ul class="list-group ">
+            
+        {% for hora in sala %}
+            
+            {% if hora.getHoraInicioReserva() in [8,9,10,11,12] %}
+                
+                    {% if hora.getHoraInicioReserva() != 8%}
+                        <li class="list-group-item">De 8 a {{ hora.getHoraInicioReserva() }} </li>
+                        {% set valor = hora.getHoraInicioReserva() %}
+                        <li class="list-group-item">De {{ valor }} a {{ hora.getHoraFinReserva() }}</li>
+
+                    {% else %}
+                        {{ hora.getHoraInicioReserva() }} 
+                    {% endif %}
+                
+            {% elseif hora.getHoraInicioReserva() in [14, 15, 16, 17, 18] %}
+                
+                    {% if hora.getHoraInicioReserva() != 14%}
+                        <li class="list-group-item">De 14 a {{ hora.getHoraInicioReserva() }} </li>
+                        {% set valor = hora.getHoraInicioReserva() %}
+                        <li class="list-group-item"> De {{ valor }} a {{ hora.getHoraFinReserva() }} </li>
+
+                    {% else %}
+                        <li class="list-group-item"> De {{ hora.getHoraInicioReserva() }} a {{ hora.getHoraFinReserva() }} </li>
+                    {% endif %}
+
+            {% endif %}
+            {% set primera = hora.getHoraInicioReserva()  %}
+            {% set ultima = hora.getHoraFinReserva() %}
+        {% endfor %}
+
+        {% if ultima < 12 %}
+            <li class="list-group-item"> De {{ultima}} a 12 y toda la tarde </li>
+        {% elseif ultima == 12 %}
+            <li class="list-group-item"> De 14 a 18 </li>
+        {% elseif ultima < 18 and ultima > 12 %}
+            <li class="list-group-item">De {{ultima}} a 18</li>
+        {% else %}
+            <li class="list-group-item"> De 8 a 12 </li>
+        {% endif %}
+
+        </ul>
+    </div>
+
+
+{% endblock %}

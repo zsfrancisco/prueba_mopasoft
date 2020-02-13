@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reserva{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h1>Reserva</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reserva.id }}</td>
+            </tr>
+            <tr>
+                <th>Hora inicio reserva</th>
+                <td>{{ reserva.horaInicioReserva }}</td>
+            </tr>
+            <tr>
+                <th>Hora fin reserva</th>
+                <td>{{ reserva.horaFinReserva }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-primary" href="{{ path('reserva_index') }}">Volver al listado</a>
+
+    <a class="btn btn-outline-primary" href="{{ path('reserva_edit', {'id': reserva.id}) }}">Editar</a>
+
+    {{ include('reserva/_delete_form.html.twig') }}
+{% endblock %}
